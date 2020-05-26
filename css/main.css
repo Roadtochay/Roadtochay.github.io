@@ -271,6 +271,7 @@ color: #d12f22;
 .mc_item {
 	border: #353535 1px solid;
 	border-radius: 2px;
+	cursor: pointer;
 }
 .mc_wrap {
 	text-align: center;
