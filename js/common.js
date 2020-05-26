@@ -18,30 +18,30 @@ $(".mc_item_wrap").click(function() {
 	}
 });
 
-if($(".adap_button").is(":visible")) {
-	$(".adap_button").click(function() {
-		if($(this).parent().children("ul").is(":visible")) {
-			$(this).parent().children("ul").slideUp();
-			$(".main_cuts").removeClass("active");
-		} else {
-			$(this).parent().children("ul").slideDown();
-			$(".main_cuts").addClass("active");
-		}
-	});
-} else {
-	$(this).children("ul").show();
-	$(".main_cuts").removeClass("active");
-};
+// if($(".adap_button").is(":visible")) {
+// 	$(".adap_button").click(function() {
+// 		if($(this).parent().children("ul").is(":visible")) {
+// 			$(this).parent().children("ul").slideUp();
+// 			$(".main_cuts").removeClass("active");
+// 		} else {
+// 			$(this).parent().children("ul").slideDown();
+// 			$(".main_cuts").addClass("active");
+// 		}
+// 	});
+// } else {
+// 	$(this).children("ul").show();
+// 	$(".main_cuts").removeClass("active");
+// };
 
-// $(".adap_button").click(function() {
-// 	if($(this).parent().children("ul").is(":visible")) {
-// 		$(this).parent().children("ul").slideUp();
-// 		$(".main_cuts").removeClass("active");
-// 	} else {
-// 		$(this).parent().children("ul").slideDown();
-// 		$(".main_cuts").addClass("active");
-// 	}
-// });
+$(".adap_button").click(function() {
+	if($(this).parent().children("ul").is(":visible")) {
+		$(this).parent().children("ul").slideUp();
+		$(".main_cuts").removeClass("active");
+	} else {
+		$(this).parent().children("ul").slideDown();
+		$(".main_cuts").addClass("active");
+	}
+});
 
 
 
