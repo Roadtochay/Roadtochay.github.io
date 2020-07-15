@@ -100,7 +100,6 @@ $(window).load(function() {
 	$(".top_header h1").animated("fadeInDown", "fadeOut");
 	$(".top_header h2").animated("fadeInUp", "fadeOut");
 	$(".tabs_header .wrapper").animated("flipInY", "fadeOut");
-	$(".profi_item").animated("fadeInRight", "fadeOutRight");
 	$(".s_back h3").animated("fadeIn", "fadeOut");
 	$("footer").animated("fadeIn", "fadeOut");
 });
