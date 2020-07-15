@@ -1,50 +1,62 @@
 $(document).ready(function() {
 
-$(".mc_item_wrap ul").each(function() {
-$(this).after("<div class='mc_item_wrap_af'></div>");
-});
 
-$(".mc_item_wrap").click(function() {
-	if($(this).children("ul").is(":visible")) {
-		$(this).children("ul").slideUp();
-		$(this).children(".mc_item_wrap_af").hide();
-		$(".mc_item_wrap").removeClass("active");
-	} else {
-		$("body .mc_wrap .mc_item_wrap > ul, .mc_item_wrap_af").hide();
-		$(".mc_item_wrap").removeClass("active");
-		$(this).addClass("active");
-		$(this).children("ul").slideDown();
-		$(this).children(".mc_item_wrap_af").show();
-	}
-});
 
-// if($(".adap_button").is(":visible")) {
-// 	$(".adap_button").click(function() {
-// 		if($(this).parent().children("ul").is(":visible")) {
-// 			$(this).parent().children("ul").slideUp();
-// 			$(".main_cuts").removeClass("active");
-// 		} else {
-// 			$(this).parent().children("ul").slideDown();
-// 			$(".main_cuts").addClass("active");
-// 		}
-// 	});
-// } else {
-// 	$(this).children("ul").show();
-// 	$(".main_cuts").removeClass("active");
-// };
+	 $(".popup").magnificPopup({type:"image"});
+	 $(".popup_c").magnificPopup();
 
-$(".adap_button").click(function() {
-	if($(this).parent().children("ul").is(":visible")) {
-		$(this).parent().children("ul").slideUp();
-		$(".main_cuts").removeClass("active");
-	} else {
-		$(this).parent().children("ul").slideDown();
-		$(".main_cuts").addClass("active");
-	}
-});
+	$.stellar({
+		responsive: true,
+		horizontalOffset: 50
+	});
+
+	$(".owl-carousel").owlCarousel({
+		responsive : {
+			0 : {
+				items : 1,
+				nav : true
+			}
+		},
+		navText : ""
+	});
 
 
 
+	function wResize() {
+		$("header").css("min-height", $(window).height());
+	};
+	wResize();
+	$(window).resize(function() {
+		wResize()
+	});
+
+
+	$(".top_phone .tab_item").not(":first").hide();
+	$(".top_phone .wrapper .tab").click(function() {
+		$(".top_phone .wrapper .tab").removeClass("active").eq($(this).index()).addClass("active");
+		$(".top_phone .tab_item").hide().eq($(this).index()).fadeIn()
+	}).eq(0).addClass("active");
+
+	$(".tabs_header .tab_item").not(":first").hide();
+	$(".tabs_header .wrapper .tab").click(function() {
+		$(".tabs_header .wrapper .tab").removeClass("active").eq($(this).index()).addClass("active");
+		$(".tabs_header .tab_item").hide().eq($(this).index()).fadeIn()
+	}).eq(0).addClass("active");
+
+	$(".contacts_top .tab_item").not(":first").hide();
+	$(".contacts_top  .tab").click(function() {
+		$(".contacts_top .tab").removeClass("active").eq($(this).index()).addClass("active");
+		$(".contacts_top .tab_item").hide().eq($(this).index()).fadeIn()
+	}).eq(0).addClass("active");
+
+	$(".bottom_phone .tab_item").not(":first").hide();
+	$(".bottom_phone .wrapper .tab").click(function() {
+		$(".bottom_phone .wrapper .tab").removeClass("active").eq($(this).index()).addClass("active");
+		$(".bottom_phone .tab_item").hide().eq($(this).index()).fadeIn()
+	}).eq(0).addClass("active");
+
+
+	
 
 	//Цели для Яндекс.Метрики и Google Analytics
 	$(".count_element").on("click", (function() {
@@ -53,120 +65,30 @@ $(".adap_button").click(function() {
 		return true;
 	}));
 
-	//Stellar - Parallax Plugin
-	//Документация: https://github.com/markdalgleish/stellar.js
-	//HTML: <div class="parallax" data-stellar-background-ratio="0.5"></div>
-	$.stellar({
-		horizontalScrolling: false,
-		verticalOffset: 40
-	});
-
-	//equalheight - одинаковая высота колонок
-	//Пример списка элементов:
-	//var eqElement = ".cat_container > div, .home_news > div"
-	var eqElement = ".bw_content > div"
-	$(window).load(function(){equalheight(eqElement);}).resize(function(){equalheight(eqElement);});
-
-	//Masked Input Plugin
-	//Документация: http://digitalbush.com/projects/masked-input-plugin/
-	//$("#date").mask("99/99/9999", {placeholder : "mm/dd/yyyy"});
-
-	//Таймер обратного отсчета
-	//Документация: http://keith-wood.name/countdown.html
-	//<div class="countdown" date-time="2015-01-07"></div>
-	var austDay = new Date($(".countdown").attr("date-time"));
-	$(".countdown").countdown({until: austDay, format: 'yowdHMS'});
-
-	//Попап менеджер FancyBox
-	//Документация: http://fancybox.net/howto
-	//<a class="fancybox"><img src="image.jpg" /></a>
-	//<a class="fancybox" data-fancybox-group="group"><img src="image.jpg" /></a>
-	$(".fancybox").fancybox();
-
-	
-
-	//Добавляет классы дочерним блокам .block для анимации
-	//Документация: http://imakewebthings.com/jquery-waypoints/
-	$(".block").waypoint(function(direction) {
-		if (direction === "down") {
-			$(".class").addClass("active");
-		} else if (direction === "up") {
-			$(".class").removeClass("deactive");
-		};
-	}, {offset: 100});
-
-	//Плавный скролл до блока .div по клику на .scroll
-	//Документация: https://github.com/flesler/jquery.scrollTo
-	$("a.scroll").click(function() {
-		$.scrollTo($(".div"), 800, {
-			offset: -90
-		});
-	});
-	//Скролл до id, указанного в hash URL
-	var elem = window.location.hash;
-	if(elem) {
-		$.scrollTo(elem, 800, {
-			offset: -90
+	//SVG Fallback
+	if(!Modernizr.svg) {
+		$("img[src*='svg']").attr("src", function() {
+			return $(this).attr("src").replace(".svg", ".png");
 		});
 	};
-
-	//Каруселька
-	//Документация: http://owlgraphic.com/owlcarousel/
-	function carousel_1() {
-		var owl = $(".carousel");
-		owl.owlCarousel({
-			items : 1,
-			loop : true,
-			autoHeight : true,
-			dots : true,
-			singleItem : true
-		});
-		owl.on("mousewheel", ".owl-wrapper", function (e) {
-			if (e.deltaY > 0) {
-				owl.trigger("owl.prev");
-			} else {
-				owl.trigger("owl.next");
-			}
-			e.preventDefault();
-		});
-		$(".next_button").click(function() {
-			owl.trigger("owl.next");
-		});
-		$(".prev_button").click(function() {
-			owl.trigger("owl.prev");
-		});
-		owl.on("resized.owl.carousel", function(event) {
-			var $this = $(this);
-			$this.find(".owl-height").css("height", $this.find(".owl-item.active").height());
-		});
-		setTimeout(function() {
-			owl.find(".owl-height").css("height", owl.find(".owl-item.active").height());
-		}, 5000);
-	};
-	carousel_1();
-
-	//Кнопка "Наверх"
-	//Документация:
-	//http://api.jquery.com/scrolltop/
-	//http://api.jquery.com/animate/
-	$("#top").click(function () {
-		$("body, html").animate({
-			scrollTop: 0
-		}, 800);
-		return false;
-	});
 
 	//Аякс отправка форм
 	//Документация: http://api.jquery.com/jquery.ajax/
-	$("form").submit(function() {
+	$("#form").submit(function(e) {
+		var ths = $(this);
+		e.preventDefault;
 		$.ajax({
-			type: "GET",
+			type: "POST",
 			url: "mail.php",
-			data: $("form").serialize()
+			data: $(this).serialize()
 		}).done(function() {
 			alert("Спасибо за заявку!");
 			setTimeout(function() {
-				$.fancybox.close();
+				var magnificPopup = $.magnificPopup.instance; 
+				// save instance in magnificPopup variable
+				magnificPopup.close();
+				ths.trigger("reset"); 
+				// Close popup that is currently opened
 			}, 1000);
 		});
 		return false;
@@ -174,22 +96,11 @@ $(".adap_button").click(function() {
 	
 });
 
-// Адаптивные скрипты, которые срабатывают только при определенном разрешении экрана
-// Документация: https://github.com/maciej-gurban/responsive-bootstrap-toolkit
-(function($, document, window, viewport) {
-	function resizeWindow() {
-		// $("a").click(function() {
-		// 	if (viewport.is("lg")) {
-		// 		return false;
-		// 	};
-		// });
-};
-$(document).ready(function() {
-	resizeWindow();
+$(window).load(function() {
+	$(".top_header h1").animated("fadeInDown", "fadeOut");
+	$(".top_header h2").animated("fadeInUp", "fadeOut");
+	$(".tabs_header .wrapper").animated("flipInY", "fadeOut");
+	$(".profi_item").animated("fadeInRight", "fadeOutRight");
+	$(".s_back h3").animated("fadeIn", "fadeOut");
+	$("footer").animated("fadeIn", "fadeOut");
 });
-$(window).bind("resize", function() {
-	viewport.changed(function(){
-		resizeWindow();
-	});
-});
-})(jQuery, document, window, ResponsiveBootstrapToolkit);
